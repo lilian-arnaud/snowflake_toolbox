@@ -1,6 +1,8 @@
 # snowflake toolbox
-stored procedures and tools around SnowFlake.
 
+## stored procedures and tools around SnowFlake.
+
+### Stalled Streams
 for databases with low activity, streams stall after 14 days, and the only way to fix this problem is to recreate stalled streams.
 the procedure ```RECREATE_STALL_STREAMS```
 
