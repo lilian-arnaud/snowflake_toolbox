@@ -4,6 +4,18 @@ create or replace procedure RECREATE_STALLED_STREAMS(DB_NAME Varchar)
  *  Returns the list of streams recreated, with the error messages if any.
  *
  *  V1.0 Lilian Arnaud
+ *
+ * Example of usage (running every Sunday at 6am UTC):
+ * ---------------------------------------------------
+ * 
+ * create or replace TASK TASK_HOUSEKEEPING_STALLED_STREAMS
+ *    WAREHOUSE = <Warehouse>
+ *   SCHEDULE = 'USING CRON 0 6 * * SUN UTC'
+ * AS
+ * call COMMON_SCHEMA.RECREATE_STALLED_STREAMS(CURRENT_DATABASE());;
+ *
+ * grant ownership on task TASK_HOUSEKEEPING_STALLED_STREAMS to <DB_SYSADMIN_ROLE> REVOKE CURRENT GRANTS;
+ * alter task TASK_HOUSEKEEPING_STALLED_STREAMS resume;
  */
 RETURNS VARCHAR
 LANGUAGE JAVASCRIPT
